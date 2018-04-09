@@ -1,0 +1,3 @@
+<button class="btn btn-secondary btn-sm" (click)="loadstart = true; loadFile()">Load File</button>
+<label class="file-name">{{file.name}}</label>
+<label class="file-date">{{file.lastModified | date:'mediumDate'}} {{file.lastModified | date:'shortTime'}}</label>

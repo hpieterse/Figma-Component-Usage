@@ -1,0 +1,53 @@
+<label class="hs-error">{{errorMessage}}</label>
+<label *ngIf="loading">Loading...</label>
+
+<div class="file-details-section" *ngIf="!loading && componentList != null && fileDetails != null && errorMessage.length <= 0">
+  <h2>{{fileDetails.name}}</h2>
+  <div class="file-details-section-header">
+    <label class="primary-element-name">Component defined in file ({{componentList.length}}):</label>
+    <button class="btn btn-primary btn-sm" (click)="componentsOpen = !componentsOpen">{{componentsOpen ? 'hide': 'view'}}</button>
+  </div>
+
+  <div *ngIf="componentsOpen" class="component-display">
+    <input class="form-control form-control-sm" type="search" [(ngModel)]="componentSearch" placeholder="Search for a component">
+    <div class="component-result-container" *ngFor="let component of (componentList | nodeName:componentSearch)">
+      <label class="secondary-element-name component-name">{{component.name}}</label>
+      <label class="component-usage-label">Location in file</label>
+      <label class="component-location">{{component.location}}</label>
+      <label class="component-usage-label">Usage in file</label>
+      <div *ngFor="let usage of component.usages">
+        <label class="component-location">{{usage.location}}</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="file-details-section-header">
+      <label class="primary-element-name">External or orphaned components used in file ({{instanceList.length}}):</label>
+      <button class="btn btn-primary btn-sm" (click)="instancesOpen = !instancesOpen">{{instancesOpen ? 'hide': 'view'}}</button>
+    </div>
+    <div *ngIf="instancesOpen" class="component-display">
+      <input class="form-control form-control-sm" type="search" [(ngModel)]="instanceSearch" placeholder="Search for a component">
+      <div *ngFor="let component of (instanceList | nodeName:instanceSearch)">
+        <label class="secondary-element-name component-name">{{component.name}}</label>
+        <div *ngFor="let usage of component.usages">
+          <label class="component-location">{{usage.location}}</label>
+        </div>
+      </div>
+    </div>
+
+  <div class="file-details-section-header">
+    <label class="primary-element-name">Nested external or orphaned components ({{nestedInstanceList.length}}):</label>
+    <button class="btn btn-primary btn-sm" (click)="orphansOpen = !orphansOpen">{{orphansOpen ? 'hide': 'view'}}</button>
+  </div>
+  <div *ngIf="orphansOpen" class="component-display">
+    <input class="form-control form-control-sm" type="search" [(ngModel)]="nestedInstanceSearch" placeholder="Search for a component">
+    <div *ngFor="let component of (nestedInstanceList | nodeName:nestedInstanceSearch)">
+      <label class="secondary-element-name component-name">{{component.name}}</label>
+      <div *ngFor="let usage of component.usages">
+        <label class="component-location">{{usage.location}}</label>
+      </div>
+    </div>
+  </div>
+
+  
+</div>

@@ -1,0 +1,8 @@
+<label class="primary-element-name">
+  {{project.name}}
+</label>
+<label class="hs-error">{{errorMessage}}</label>
+<label class="secondary-element-name" *ngIf="project.files == null">Loading...</label>
+<div class="secondary-element-name" *ngFor="let file of project.files">
+  <app-figma-file [file]="file" (onFileLoad)="onFileLoadIntermediate(file)"></app-figma-file>
+</div>

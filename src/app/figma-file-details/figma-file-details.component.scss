@@ -1,0 +1,44 @@
+.file-details-section{
+    display: flex;
+    flex-direction: column;
+}
+.primary-element-name{
+    display: inline-block;
+    height: 50px;
+}
+.component-display{
+    position: relative;
+    .component-result-container{
+        margin-bottom: 20px;
+    }
+
+    .component-name, .component-location{
+        display: block;
+        margin-bottom: 0;
+        margin-left:10px;
+    }
+    .component-location, 
+    .component-usage-label{
+        margin-left:10px;
+    }
+    
+    .component-name{
+        font-weight: 500;
+    }
+    .component-location,
+    .component-usage-label{
+        font-size: 12px;
+        margin-left:30px;
+    }
+    .component-usage-label{
+        font-weight: 500;
+        &:after{
+            content: " ";
+            height: 1px;
+            background-color: rgba(0,0,0,.1);;
+            width:100%;
+            display: block;
+            position: absolute;
+        }
+    }
+}

@@ -1,0 +1,77 @@
+h1{
+    text-align: center;
+    margin-top:40px;
+}
+p.sub-title{
+    text-align: center;
+}
+
+.entry-section-container{
+    margin-top: 40px;
+}
+.sub-form{
+    margin-top: 40px;
+}
+
+.inline-button-section{
+    width:100%;
+    display: flex;
+    justify-content: center;
+
+    .form-group{
+        flex:1;
+        margin-right: 25px;
+    }
+    .button-container{
+        button{
+            position: relative;
+            top: 32px;
+            width: 180px;
+        }
+    }
+   
+}
+
+.form-or{
+    position: relative;
+    label{
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        background-color:white;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    hr {
+        width: 100%;
+        left: 0;
+        position: absolute;
+        top: 0%;
+        z-index: -1;
+    }
+}
+.results-area{
+    display: flex;
+    position: relative;
+    .collapse-button{
+        &.collapsed{
+            position: relative;
+            margin-right:20px;
+            height: 32px;
+        }
+        position: absolute;
+        top:3px;
+    }
+
+   .team-library{
+       flex:1;
+       h2{
+           margin-left:40px;
+       }
+   }
+   .file-details{
+       flex:1
+   }
+}

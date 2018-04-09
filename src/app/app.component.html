@@ -1,0 +1,61 @@
+<div class="container">
+    <h1>{{title}}</h1>
+    <p class="sub-title">Find the usages of components in a file, or accross files in your team projects</p>
+    <div class="entry-section-container">
+
+        <div class="form-group">
+            <label for="privateKey">Personal Access Token</label>
+            <input class="form-control" id="privateKey" aria-describedby="privateKeyHelp" placeholder="Enter private key" #privateKey
+                value="{{initialPrivateKey}}">
+            <small id="privateKeyHelp" class="form-text text-muted"><a href="https://www.figma.com/developers/docs#auth" target="_blank">Instructions on how to get your personal access token</a>. Enter you personal access token that is used to authenticate with Figma. This is not stored or recorded.</small>
+        </div>
+        <div class="sub-form col-lg-11 col-sm-11 col-xs-11col-md-11 col-xl-11">
+            <div class="inline-button-section">
+                <div class="form-group">
+                    <label for="teamId">Team ID</label>
+                    <input class="form-control" id="teamId" aria-describedby="teamIdHelp" placeholder="Enter your team id" #teamId value="{{initialTeamId}}">
+                    <small id="teamIdHelp" class="form-text text-muted">Enter your team ID to load all team projects and files.</small>
+                </div>
+                <div class="button-container">
+                    <button class="btn btn-primary" (click)="loading=true; getFiles(privateKey.value, teamId.value)">Load Team File List</button>
+                </div>
+            </div>
+            <div class="form-or">
+                <label>OR</label>
+                <hr>
+            </div>
+            <div class="inline-button-section">
+                <div class="form-group">
+                    <label for="fileKey">File Key</label>
+                    <input class="form-control" id="fileKey" aria-describedby="fileKeyHelp" placeholder="Enter a file key" #fileKey value="{{initialFileKey}}">
+                    <small id="fileKeyHelp" class="form-text text-muted">Use the file key to find componet usage within a specific file.</small>
+                </div>
+                <div class="button-container">
+                    <button class="btn btn-secondary" (click)="loadFile(privateKey.value, teamId.value, fileKey.value)">Load File</button>
+                </div>
+            </div>
+        </div>
+        <label class="hs-error">{{errorMessage}}</label>
+
+    </div>
+    <hr>
+
+    <div class="results-area">
+        <button class="btn btn-secondary btn-sm collapse-button" [ngClass]="{'collapsed': libaryCollapsed}" (click)="libaryCollapsed = !libaryCollapsed">
+            <i *ngIf="!libaryCollapsed" class="fas fa-arrow-left"></i>
+            <span *ngIf="libaryCollapsed">Show Library</span>
+        </button>
+        <div *ngIf="!libaryCollapsed" class="team-library">
+            <h2>Team Library</h2>
+
+            <label *ngIf="!loading">Enter your details above to load your team library</label>
+            <label class="loading-message" *ngIf="loading && projects.length == 0">Loading...</label>
+            <div *ngFor="let project of projects">
+                <app-figma-project [project]="project" (onFileLoad)="fileKey.value = $event.key; loadFile(privateKey.value, teamId.value, $event.key)"></app-figma-project>
+            </div>
+        </div>
+        <div class="file-details">
+            <app-figma-file-details></app-figma-file-details>
+        </div>
+    </div>
+</div>
