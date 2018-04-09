@@ -2,6 +2,8 @@
 
 Simple web app that finds the usages of components in a Figma file. The project uses the [Figma Web API](https://www.figma.com/developers) to read the content of Figma files.
 
+To see it in action, go to https://handsaw.co.za/figma-component-usage/
+
 ## Getting Started
 
 The project was build using [Angular CLI](https://github.com/angular/angular-cli), and is the easiest way to run the project.
