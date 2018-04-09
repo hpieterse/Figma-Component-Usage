@@ -16,7 +16,7 @@ import { FigmaInstance } from '../figma-instance';
 })
 export class FigmaFileDetailsComponent {
   public loading = false;
-  private fileDetails: FigmaFileDetails;
+  public fileDetails: FigmaFileDetails;
   public errorMessage: string;
   public componentList: Array<ComponentUsage> = [];
   public instanceList: Array<ComponentUsage> = [];
@@ -84,7 +84,7 @@ export class FigmaFileDetailsComponent {
     const uniqueNames: Array<string> = [];
     const uniqueComponentIds: Array<string> = [];
     orphans.forEach((orphanNode) => {
-      
+
       if ((orphanNode as FigmaInstance).componentId != null) {
         if (!uniqueComponentIds.includes((orphanNode as FigmaInstance).componentId)) {
           uniqueComponentIds.push((orphanNode as FigmaInstance).componentId);
@@ -97,13 +97,14 @@ export class FigmaFileDetailsComponent {
     });
 
     uniqueComponentIds.forEach((uniqueComponentId) => {
-      
+
       // find one instance of the component with the given unique component ID
       const matchedOrphan = orphans.find((orphanNode) =>
         (orphanNode as FigmaInstance).componentId === uniqueComponentId);
-      let result : ComponentUsage = Object.assign(new ComponentUsage(), matchedOrphan);
-      
-      // go through orphan list and find all the items that match one of the 
+
+      const result: ComponentUsage = Object.assign(new ComponentUsage(), matchedOrphan);
+
+      // go through orphan list and find all the items that match one of the
       // unique component ids or the name of the component (assume here that
       // if the name matches, it's the same component)
       orphans.forEach((orphanNode) => {
@@ -120,7 +121,7 @@ export class FigmaFileDetailsComponent {
     const instanceNames = this.instanceList.map((c) => c.name);
     // find all orphans without component ids that are not asigned to the instance list
     uniqueNames.forEach((uniqueOrphanName) => {
-      if(instanceNames.findIndex((n) => n === uniqueOrphanName) < 0){
+      if (instanceNames.findIndex((n) => n === uniqueOrphanName) < 0) {
         let result: ComponentUsage = null;
         orphans.forEach((orphanNode) => {
           if ((orphanNode as FigmaInstance).componentId == null && orphanNode.name === uniqueOrphanName) {

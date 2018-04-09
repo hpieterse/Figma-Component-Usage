@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  privateKey: "",
-  teamId: "",
-  fileKey: ""
+  privateKey: '',
+  teamId: '',
+  fileKey: ''
 };

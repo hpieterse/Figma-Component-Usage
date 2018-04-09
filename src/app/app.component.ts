@@ -20,11 +20,14 @@ export class AppComponent {
   public initialTeamId: string;
   public initialFileKey: string;
 
+  public libaryCollapsed: boolean;
+  public loading: boolean;
+
   @ViewChild(FigmaFileDetailsComponent) figmaFileDetails: FigmaFileDetailsComponent;
 
   constructor(private figmaPlatformService: FigmaPlatformService) {
     this.projects = [];
-    if(environment != null){
+    if (environment != null) {
       this.initialPrivateKey = environment.privateKey;
       this.initialTeamId = environment.teamId;
       this.initialFileKey = environment.fileKey;

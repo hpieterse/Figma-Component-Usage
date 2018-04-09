@@ -16,6 +16,7 @@ import { FigmaInstance } from '../figma-instance';
 })
 export class FigmaFileComponent {
   private fileDetails: FigmaFileDetails;
+  public loadstart: boolean;
 
   @Input() file: FigmaFile;
   @Output() onFileLoad = new EventEmitter<void>();
