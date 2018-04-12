@@ -1,0 +1,15 @@
+<div class="container file-url">
+  <div class=" col-lx-2 col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
+  <div class="form-group col-lx-8 col-lg-9 col-md-9 col-sm-12 col-xs-12">
+    <label for="privateKey">Figma File URL or File Key</label>
+    <input class="form-control" id="privateKey" aria-describedby="fileUrlHelp" placeholder="Provide the link to a Figma file"
+      #fileUrl />
+    <small id="privateKeyHelp" class="form-text text-muted">Use the same link you would use when sharing a figma file, or open your Figma file in a browser and copy the content
+      of the address bar.</small>
+  </div>
+  <button (click)="loadFile(fileUrl.value)" class="btn btn-primary align-middle col-xl-1 col-lg-1 col-md-1 col-sm-12 col-xs-12">Load File</button>
+</div>
+<hr/>
+<div class="file-details container">
+    <app-figma-file-details></app-figma-file-details>
+</div>

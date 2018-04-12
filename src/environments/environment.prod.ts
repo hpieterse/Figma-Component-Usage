@@ -1,6 +1,4 @@
 export const environment = {
   production: true,
-  privateKey: '',
-  teamId: '',
-  fileKey: ''
+  authServerUrl: 'https://www.handsaw.co.za/authtest/auth/'
 };

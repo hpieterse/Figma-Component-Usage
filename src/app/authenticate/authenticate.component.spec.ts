@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FigmaFileComponent } from './figma-file.component';
+import { AuthenticateComponent } from './authenticate.component';
 
-describe('FigmaFileComponent', () => {
-  let component: FigmaFileComponent;
-  let fixture: ComponentFixture<FigmaFileComponent>;
+describe('AuthenticateComponent', () => {
+  let component: AuthenticateComponent;
+  let fixture: ComponentFixture<AuthenticateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FigmaFileComponent ]
+      declarations: [ AuthenticateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FigmaFileComponent);
+    fixture = TestBed.createComponent(AuthenticateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
