@@ -7,33 +7,33 @@ import { FigmaResponseFiles } from './figma-response-files';
 import { FigmaFileDetails } from './figma-file-details';
 import { FigmaFileDetailsJson } from './figma-file-details-json';
 import { FigmaError } from './figma-error';
+import { FigmaAuthenticationService } from './figma-authentication.service';
 
 @Injectable()
 export class FigmaPlatformService {
   private _apiEndpoint = 'https://api.figma.com/v1';
   private _httpOptions = null;
-  private _files: Array<FigmaFileDetails> = [];
 
-  private _personalKey: string;
-  private _teamId: string;
+  private _authenticationToken: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authenticationService: FigmaAuthenticationService) {
 
-  public init(personalKey: string, teamId: string) {
-    this._personalKey = personalKey;
-    this._teamId = teamId;
+  }
+
+  public init() {
+    this._authenticationToken = this.authenticationService.authToken;
 
     this._httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'x-figma-token': personalKey,
+        'Authorization': `Bearer ${this._authenticationToken}`
       })
     };
   }
 
-  public async getProjects(): Promise<Array<FigmaProject>> {
+  public async getProjects(teamId: string): Promise<Array<FigmaProject>> {
     return (await this
-      .callFigmaApi<FigmaResponseProjects>(`/teams/${this._teamId}/projects`))
+      .callFigmaApi<FigmaResponseProjects>(`/teams/${teamId}/projects`))
       .projects.map((jsonProject) => FigmaProject.fromJSON(jsonProject));
   }
 
@@ -43,22 +43,12 @@ export class FigmaPlatformService {
   }
 
   public async getFileByKey(file: string): Promise<FigmaFileDetails> {
-    const matchedFiles = (this._files.filter((cachedFile: FigmaFileDetails) => cachedFile.file.key === file));
-    if (matchedFiles.length > 0) {
-      return matchedFiles[0];
-    }
-
     const fileToReturn = FigmaFileDetails.fromJSON(await this.callFigmaApi<FigmaFileDetailsJson>(`/files/${file}`));
 
     return fileToReturn;
   }
   public async getFile(file: FigmaFile): Promise<FigmaFileDetails> {
     // check if the file has already been downloaded
-    const matchedFiles = (this._files.filter((cachedFile: FigmaFileDetails) => cachedFile.file.key === file.key));
-    if (matchedFiles.length > 0) {
-      return matchedFiles[0];
-    }
-
     const fileToReturn = FigmaFileDetails.fromJSON(await this.callFigmaApi<FigmaFileDetailsJson>(`/files/${file.key}`));
     fileToReturn.file = file;
 

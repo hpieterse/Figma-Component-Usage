@@ -5,7 +5,5 @@
 
 export const environment = {
   production: false,
-  privateKey: '',
-  teamId: '',
-  fileKey: ''
+  authServerUrl: 'http://localhost:9001/'
 };

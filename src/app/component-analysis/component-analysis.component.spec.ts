@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FigmaProjectComponent } from './figma-project.component';
+import { ComponentAnalysisComponent } from './component-analysis.component';
 
-describe('FigmaProjectComponent', () => {
-  let component: FigmaProjectComponent;
-  let fixture: ComponentFixture<FigmaProjectComponent>;
+describe('ComponentAnalysisComponent', () => {
+  let component: ComponentAnalysisComponent;
+  let fixture: ComponentFixture<ComponentAnalysisComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FigmaProjectComponent ]
+      declarations: [ ComponentAnalysisComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FigmaProjectComponent);
+    fixture = TestBed.createComponent(ComponentAnalysisComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

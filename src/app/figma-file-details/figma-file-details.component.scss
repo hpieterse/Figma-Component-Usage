@@ -5,11 +5,22 @@
 .primary-element-name{
     display: inline-block;
     height: 50px;
+    margin-top: 20px;
+}
+.secondary-element-name{
+    font-size: 15px;
+    margin-bottom: 5px;
+    margin-top: 13px;
+    border-bottom: 1px solid #eee;
 }
 .component-display{
     position: relative;
     .component-result-container{
         margin-bottom: 20px;
+    }
+
+    .component-location{
+        font-weight: normal;
     }
 
     .component-name, .component-location{
@@ -32,13 +43,9 @@
     }
     .component-usage-label{
         font-weight: 500;
-        &:after{
-            content: " ";
-            height: 1px;
-            background-color: rgba(0,0,0,.1);;
-            width:100%;
-            display: block;
-            position: absolute;
-        }
+        display: block;
+        border-bottom: 1px solid #eee;
+        margin-top: 20px;
+        width: 50%;
     }
 }
