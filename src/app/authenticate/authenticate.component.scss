@@ -1,0 +1,31 @@
+:host{
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
+
+.logo{
+    width: 150px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hs-error{
+    display: block;
+    padding-top: 12px;
+    text-align: center;
+}
+h1{
+    font-size:15px;
+    text-align: center;
+    padding-top: 0;
+    margin-bottom: 50px;
+}
+
+button{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
