@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  authServerUrl: 'https://www.handsaw.co.za/authtest/auth/'
+  authServerUrl: 'https://www.handsaw.co.za/figma-component-usage/auth/'
 };
