@@ -10,6 +10,7 @@ import { NodeNamePipe } from './node-name.pipe';
 import { FigmaAuthenticationService } from './figma-authentication.service';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { ComponentAnalysisComponent } from './component-analysis/component-analysis.component';
+import { FigmaNodeLocationComponent } from './figma-node-location/figma-node-location.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ComponentAnalysisComponent } from './component-analysis/component-analy
     NodeNamePipe,
     AuthenticateComponent,
     ComponentAnalysisComponent,
+    FigmaNodeLocationComponent,
   ],
   imports: [
     BrowserModule,
