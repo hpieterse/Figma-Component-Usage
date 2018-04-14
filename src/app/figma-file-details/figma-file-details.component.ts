@@ -8,6 +8,7 @@ import { FigmaNodeType } from '../figma-node-type.enum';
 import { FigmaError } from '../figma-error';
 import { ComponentUsage } from '../component-usage';
 import { FigmaInstance } from '../figma-instance';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-figma-file-details',
@@ -17,22 +18,21 @@ import { FigmaInstance } from '../figma-instance';
 export class FigmaFileDetailsComponent {
   public loading = false;
   public fileDetails: FigmaFileDetails;
+  public fileKey: string;
   public errorMessage: string;
   public componentList: Array<ComponentUsage> = [];
   public instanceList: Array<ComponentUsage> = [];
   public nestedInstanceList: Array<ComponentUsage> = [];
 
   constructor(private figmaPlatformService: FigmaPlatformService) {
-
   }
 
   public async loadFile(fileKey: string) {
-
+    this.fileKey = fileKey;
     try {
       this.loading = true;
       this.errorMessage = '';
       this.fileDetails = await this.figmaPlatformService.getFileByKey(fileKey);
-
 
       this.analyseComponentDefinitions();
       this.analyseOrphans();

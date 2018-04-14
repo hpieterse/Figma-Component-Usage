@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FigmaPlatformService } from '../figma-platform.service';
 import { FigmaFileDetailsComponent } from '../figma-file-details/figma-file-details.component';
+import { environment } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-component-analysis',
@@ -13,11 +14,10 @@ export class ComponentAnalysisComponent {
   constructor(private figmaPlatformService: FigmaPlatformService) { }
 
   public loadFile(fileUrl: string) {
-    const start = 'figma.com/file/';
     const end = '/';
-
+    const start = environment.figmaUrl;
     let fileKey = fileUrl;
-    if (fileUrl.indexOf(start) > 0) {
+    if (fileUrl.indexOf(start) >= 0) {
       const keyStart = fileUrl.indexOf(start) + start.length;
       const keyEnd = fileUrl.indexOf(end, keyStart);
 

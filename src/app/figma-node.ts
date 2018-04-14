@@ -9,12 +9,13 @@ export class FigmaNode {
     public type: FigmaNodeType;
     public children: Array<FigmaNode>;
     public parent: FigmaNode;
-    public get location(): string {
-
+    public get parents(): Array<FigmaNode> {
+        let array = new Array<FigmaNode>();
         if (this.parent != null) {
-            return `${this.parent.location} ${this.parent.location.length > 0 ? '>' : ''} ${this.parent.name}`;
+            array = this.parent.parents.slice();
         }
-        return '';
+        array.push(this);
+        return array;
     }
 
     static fromJSON(json: FigmaNodeJson, parent?: FigmaNode): FigmaNode {

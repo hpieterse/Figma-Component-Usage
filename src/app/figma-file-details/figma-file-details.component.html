@@ -13,27 +13,33 @@
     <div class="component-result-container" *ngFor="let component of (componentList | nodeName:componentSearch)">
       <label class="secondary-element-name component-name">{{component.name}}</label>
       <label class="component-usage-label">Location in file</label>
-      <label class="component-location">{{component.location}}</label>
+      <label class="component-location">
+        <app-figma-node-location [fileKey]="fileKey" [node]="component"></app-figma-node-location>
+      </label>
       <label class="component-usage-label">Usage in file</label>
       <div *ngFor="let usage of component.usages">
-        <label class="component-location">{{usage.location}}</label>
+        <label class="component-location">
+          <app-figma-node-location [fileKey]="fileKey" [node]="usage"></app-figma-node-location>
+        </label>
       </div>
     </div>
   </div>
 
   <div class="file-details-section-header">
-      <label class="primary-element-name">External or orphaned components used in file ({{instanceList.length}}):</label>
-      <button class="btn btn-primary btn-sm" (click)="instancesOpen = !instancesOpen">{{instancesOpen ? 'hide': 'view'}}</button>
-    </div>
-    <div *ngIf="instancesOpen" class="component-display">
-      <input class="form-control form-control-sm" type="search" [(ngModel)]="instanceSearch" placeholder="Search for a component">
-      <div *ngFor="let component of (instanceList | nodeName:instanceSearch)">
-        <label class="secondary-element-name component-name">{{component.name}}</label>
-        <div *ngFor="let usage of component.usages">
-          <label class="component-location">{{usage.location}}</label>
-        </div>
+    <label class="primary-element-name">External or orphaned components used in file ({{instanceList.length}}):</label>
+    <button class="btn btn-primary btn-sm" (click)="instancesOpen = !instancesOpen">{{instancesOpen ? 'hide': 'view'}}</button>
+  </div>
+  <div *ngIf="instancesOpen" class="component-display">
+    <input class="form-control form-control-sm" type="search" [(ngModel)]="instanceSearch" placeholder="Search for a component">
+    <div *ngFor="let component of (instanceList | nodeName:instanceSearch)">
+      <label class="secondary-element-name component-name">{{component.name}}</label>
+      <div *ngFor="let usage of component.usages">
+        <label class="component-location">
+            <app-figma-node-location [fileKey]="fileKey" [node]="usage"></app-figma-node-location>
+        </label>
       </div>
     </div>
+  </div>
 
   <div class="file-details-section-header">
     <label class="primary-element-name">Nested external or orphaned components ({{nestedInstanceList.length}}):</label>
@@ -44,10 +50,12 @@
     <div *ngFor="let component of (nestedInstanceList | nodeName:nestedInstanceSearch)">
       <label class="secondary-element-name component-name">{{component.name}}</label>
       <div *ngFor="let usage of component.usages">
-        <label class="component-location">{{usage.location}}</label>
+        <label class="component-location">
+            <app-figma-node-location [fileKey]="fileKey" [node]="usage"></app-figma-node-location>
+        </label>
       </div>
     </div>
   </div>
 
-  
+
 </div>

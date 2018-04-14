@@ -1,0 +1,5 @@
+<span *ngFor="let parent of node.parents; let last = last;">
+    <a *ngIf="urlFromNode(parent)" href="{{urlFromNode(parent)}}" target="_blank">{{parent.name}}</a>
+    <span *ngIf="urlFromNode(parent) == null">{{parent.name}}</span>
+    <i *ngIf="!last" class="fal fa-chevron-right"></i>
+</span>

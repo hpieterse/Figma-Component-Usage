@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  authServerUrl: 'http://localhost:9001/'
+  authServerUrl: 'http://localhost:9001/',
+  figmaUrl: 'figma.com/file/'
 };
