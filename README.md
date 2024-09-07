@@ -1,8 +1,10 @@
+> **This project is no longer supported and the site is not hosted anymore**
+
 # Figma Component Usage
 
 Simple web app that finds the usages of components in a Figma file. The project uses the [Figma Web API](https://www.figma.com/developers) to read the content of Figma files.
 
-To see it in action, go to https://handsaw.co.za/figma-component-usage/
+~To see it in action, go to https://handsaw.co.za/figma-component-usage/~
 
 ## Getting Started
 
